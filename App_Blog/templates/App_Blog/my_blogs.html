@@ -1,0 +1,130 @@
+{% extends 'App_Blog/base.html' %}
+{% block title %}-My Blogs{% endblock title %}
+{% block css %}
+<style>
+body {
+    background: #fafafa;
+    color: #333333;
+    /* margin-top: 5rem; */
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+  }
+  
+  ul {
+    margin: 0;
+  }
+
+  img{
+      width: 100%;
+  }
+  
+  .bg-steel {
+    background-color: #5f788a;
+  }
+  
+  .site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+  }
+  
+  .site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+  }
+  
+  .site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+  }
+  
+  .content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+  
+  .article-title {
+    color: #444444;
+  }
+  
+  a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+  }
+  
+  .article-content {
+    white-space: pre-line;
+  }
+  
+  .article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+  }
+  
+  .article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
+  }
+  
+  .article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+  
+  .account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .account-heading {
+    font-size: 2.5rem;
+  }
+</style>
+{% endblock css %}
+{% block content %} 
+
+<h2>Your Total Blogs: {{user.post_author.count}}</h2>
+
+{% for blog in user.post_author.all %}
+
+<article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ blog.author.user_profile.image.url }}" alt="">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="">{{ blog.author }}</a>
+            <small class="text-muted">{{ blog.publish_date|date:"F d, Y" }}</small><br>
+            <h6>{{ blog.liked_blog.count }} Like{{ blog.liked_blog.count|pluralize }}</h6>
+            <h6>{{blog.blog_comment.count}} Comment{{blog.blog_comment.count|pluralize}}</h6>
+
+            {% if blog.author == user %}
+            <a class="btn btn-primary btn-sm" href="{% url 'App_Blog:blog-edit' pk=blog.pk%}">Edit</a>
+            <a class="btn btn-danger btn-sm" href="{% url 'App_Blog:blog-delete' pk=blog.pk%}">Delete</a>
+            {% endif %}
+            
+        </div>
+        <h2><a class="article-title" href="{% url 'App_Blog:blog-details' slug=blog.slug %}">{{ blog.title }}</a></h2>
+        <div class="row">
+            <div class="col-sm-4">
+                <img class="" src="{{ blog.blog_image.url }}" alt="">
+            </div>
+            <div class="col-sm-8">
+                <p class="article-content">{{ blog.content|linebreaks|truncatewords:30 }}</p>
+            </div>
+        </div>
+    </div>
+</article>
+
+{% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends 'App_Blog/base.html' %} 
+{% block title %}-Update Blog{% endblock title%} 
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if blog.author == user %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Update Blog</legend>
+        {{ form|crispy }}
+    </fieldset>
+    <div class="form-group mt-3 mb-3">
+        <button class="btn btn-outline-info btn-sm" type="submit"> Submit </button>
+    </div>
+</form>
+{% else %}
+<h3>You are not allowed buddy....</h3>
+{% endif %}
+    
+{% endblock content %}
