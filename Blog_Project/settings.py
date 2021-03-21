@@ -17,8 +17,6 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-STATIC_DIR    = os.path.join(BASE_DIR, 'static')
-MEDIA_DIR     = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -131,13 +129,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [STATIC_DIR,]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "live-static", "static-root")
 
-MEDIA_ROOT = MEDIA_DIR
-MEDIA_URL  = '/media/'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_URL  = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "live-static", "media-root")
 
 LOGIN_URL = 'App_Login:blog-login' # for @ login_required decoretors
 
