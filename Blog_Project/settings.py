@@ -26,15 +26,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'k37+&*7pl28tjo@0k^3ngm%)58031z0jn4sp5ghmpm07ujx_$9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['anis-blog-django.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -129,16 +128,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-    )
-
-STATIC_ROOT = os.path.join(BASE_DIR, "live-static", "static-root")
-
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_DIRS = [BASE_DIR / "static",]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL  = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "live-static", "media-root")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 LOGIN_URL = 'App_Login:blog-login' # for @ login_required decoretors
 
