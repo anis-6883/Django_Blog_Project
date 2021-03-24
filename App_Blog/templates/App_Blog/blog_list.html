@@ -5,7 +5,7 @@
 {% for blog in blogs %}
 
 <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ blog.author.user_profile.image.url }}" alt="">
+    <img class="rounded-circle article-img blog-img" src="{{ blog.author.user_profile.image.url }}" alt="">
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2" href="">{{ blog.author }}</a>

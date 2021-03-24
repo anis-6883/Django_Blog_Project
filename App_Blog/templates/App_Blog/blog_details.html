@@ -5,7 +5,7 @@
 {% block content %}
 
 <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ blog.author.user_profile.image.url }}" alt="">
+    <img class="rounded-circle article-img blog-img" src="{{ blog.author.user_profile.image.url }}" alt="">
     <div class="media-body">
         <div class="article-metadata">
 
@@ -31,9 +31,9 @@
         </div>
         <div class="mt-2">
           {% if not liked %}
-            <a href="{% url 'App_Blog:blog-liked' pk=blog.pk %}"><img src="{% static 'App_Blog/images/like.png'%}" width="40px" alt=""></a>
+            <a href="{% url 'App_Blog:blog-liked' pk=blog.pk %}"><img class="like-img" src="{% static 'App_Blog/images/like.png'%}" alt=""></a>
           {% else %}
-            <a href="{% url 'App_Blog:blog-unliked' pk=blog.pk %}"><img src="{% static 'App_Blog/images/dislike.png'%}" width="40px" alt=""></a>
+            <a href="{% url 'App_Blog:blog-unliked' pk=blog.pk %}"><img class="like-img" src="{% static 'App_Blog/images/dislike.png'%}"  alt=""></a>
           {% endif %}
         </div>
     </div>
