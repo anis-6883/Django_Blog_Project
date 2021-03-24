@@ -5,7 +5,7 @@
 {% for blog in blogs %}
 
 <article class="media content-section">
-    <img class="rounded-circle article-img blog-img" src="{{ blog.author.user_profile.image.url }}" alt="">
+    <img class="rounded-circle article-img" src="{{ blog.author.user_profile.image.url }}" alt="">
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2" href="">{{ blog.author }}</a>
@@ -17,7 +17,7 @@
         <h2><a class="article-title" href="{% url 'App_Blog:blog-details' slug=blog.slug %}">{{ blog.title }}</a></h2>
         <div class="row">
             <div class="col-sm-4">
-                <img class="" src="{{ blog.blog_image.url }}" alt="">
+                <img class="blog-img" src="{{ blog.blog_image.url }}" alt="">
             </div>
             <div class="col-sm-8">
                 <p class="article-content">{{ blog.content|linebreaks|truncatewords:30 }}</p>
